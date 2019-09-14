@@ -102,8 +102,11 @@ for (i, imagePath) in enumerate(imagePaths):
 			total += 1
 
 # dump the facial embeddings + names to disk
-print("[INFO] serializing {} encodings...".format(total))
+print("! serializing {} encodings...".format(total))
 data = {"embeddings": knownEmbeddings, "names": knownNames}
 f = open(args["embeddings"], "wb")
 f.write(pickle.dumps(data))
 f.close()
+
+# run
+# python3 extract_embeddings.py --dataset dataset --embeddings output/embeddings.pickle --detector face_detection_model --embedding-model openface_nn4.small2.v1.t7
