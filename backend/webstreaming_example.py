@@ -18,7 +18,6 @@ app = Flask(__name__)
 # warmup
 #vs = VideoStream(usePiCamera=1).start()
 #vs = VideoStream(src=0).start()
-time.sleep(2.0)
 
 @app.route("/")
 def index():
