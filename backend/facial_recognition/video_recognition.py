@@ -37,7 +37,7 @@ recognizer = pickle.loads(open(args["recognizer"], "rb").read())
 le = pickle.loads(open(args["le"], "rb").read())
 
 # initialize the video stream, then allow the camera sensor to warm up
-print("[INFO] starting video stream...")
+print("! starting video stream...")
 vs = VideoStream(src=0).start()
 time.sleep(2.0)
  
@@ -122,8 +122,8 @@ while True:
 
 # stop the timer and display FPS information
 fps.stop()
-print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
-print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
+print("! elasped time: {:.2f}".format(fps.elapsed()))
+print("! approx. FPS: {:.2f}".format(fps.fps()))
  
 # do a bit of cleanup
 cv2.destroyAllWindows()
