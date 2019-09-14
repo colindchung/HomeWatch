@@ -1,40 +1,60 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, 
         Text, 
         StyleSheet, 
+        TouchableHighlight,
+        Animated,
+        Easing,
         Button,
         Image
     } from 'react-native';
 
 
-const Home = () => {
-    return (
-        <View style={styles.background}>
-            <View style={styles.imageBorder}>
-                <Image
-                    style={styles.stream}
-                    source={require('../../assets/tee.jpg')}
-                />
+export default class Home extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            username: "Colin"
+        }   
+    }
+
+    render() {
+        return (
+            <View>
+                <View>
+                    <Text>Welcome, {this.state.username}!</Text>
+                </View>
             </View>
-            <View style={styles.imageBorder}>
-                <Image
-                    style={styles.stream}
-                    source={require('../../assets/tee2.jpeg')}
-                />
-            </View>
-        </View>
-    )
+        )
+    }
+    
 };
 
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        alignSelf: 'center',
         backgroundColor: '#FFFFFF'
     },
+    navBar: {
+        backgroundColor: '#d3d3d3',
+        alignSelf: 'stretch',
+        flexDirection: 'row-reverse'
+    },
+    navElement: {
+        width: 150,
+        height: 40,
+        fontSize: 25,
+        alignItems: 'flex-end',
+        paddingTop: 10,
+        paddingRight: 10,
+        borderRightColor: '#000000'
+    },
+    imageBox: {
+        alignSelf: 'center',
+    },
     imageBorder: {
-        maxWidth: 300,
-        paddingTop: 70,
+        paddingTop: 50,
         backgroundColor: '#FFFFFF'
     },
     stream: {
@@ -45,5 +65,5 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Home;
+
 
