@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image} from 'react-native';
 
 const navigator = createStackNavigator(
   {
-    Home: Login
+    Home: Login,
   },
   {
     initialRouteName: 'Home',
