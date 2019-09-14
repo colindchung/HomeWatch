@@ -46,6 +46,11 @@ export default class App extends React.Component {
             console.log(error.toString(error));
         }
     }
+
+    onPressSignUp(props) {
+        const {navigate} = props.navigation;
+        navigate('RegisterPage');
+    }
     renderCurrentState(props) {
         if (this.state.authenticating) {
             return (
@@ -71,7 +76,7 @@ export default class App extends React.Component {
                     value={this.state.password}
                 />
                 <LoginButton onPress={() => this.onPressSignIn(props)}>Log In</LoginButton>
-                <LoginButton onPress={() => this.onPressSignIn(props)}>Sign Up</LoginButton>
+                <LoginButton onPress={() => this.onPressSignUp(props)}>Sign Up</LoginButton>
             </View>
         );
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Login from './src/screens/Login';
 import Home from './src/screens/Home';
+import Register from './src/screens/Register';
 import ActionBarImage from './src/components/ActionBarImage';
 import * as Font from 'expo-font';
 
@@ -12,7 +13,8 @@ import * as Font from 'expo-font';
 const navigator = createStackNavigator(
   {
     LoginPage: Login,
-    HomePage: Home
+    HomePage: Home,
+    RegisterPage: Register
   },
   {
     initialRouteName: 'LoginPage',
