@@ -1,75 +1,48 @@
-import React, {Component} from 'react';
-import {View, 
-        Text, 
-        StyleSheet, 
-        ListView,
-        FlatList
-    } from 'react-native';
+import React, { Component } from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    ListView,
+    FlatList
+} from 'react-native';
 
 
 export default class Home extends Component {
+    constructor(props){
+        super(props);
+        this.state = {        
+            licenseData: [],
+            faceData: [],
+        }
+    }
 
-    state = {
-        licenseData: [
-            {
-                Plate: 'ABCDEF',
-                Time: '2019/01/01'
-            },
-            {
-                Plate: 'FEDCBA',
-                Time: '2019/01/02'
-            },
-            {
-                Plate: 'ABCDEF',
-                Time: '2019/01/01'
-            },
-            {
-                Plate: 'FEDCBA',
-                Time: '2019/01/02'
-            },
-            {
-                Plate: 'ABCDEF',
-                Time: '2019/01/01'
-            },
-            {
-                Plate: 'FEDCBA',
-                Time: '2019/01/02'
-            },
-            {
-                Plate: 'ABCDEF',
-                Time: '2019/01/01'
-            },
-            {
-                Plate: 'FEDCBA',
-                Time: '2019/01/02'
-            },
-            {
-                Plate: 'ABCDEF',
-                Time: '2019/01/01'
-            },
-            {
-                Plate: 'FEDCBA',
-                Time: '2019/01/02'
-            }
-        ],
-        faceData: [
-            {
-                Person: 'Colin',
-                Time: '2019/01/01'
-            },
-            {
-                Person: 'SmartSam22',
-                Time: '2019/01/02'
-            }
-        ]
-    }  
-
-    padding(top, bottom){
+    padding(top, bottom) {
         return {
             paddingTop: top,
             paddingBottom: bottom
         }
     }
+
+    componentDidMount() {
+        var faceData = firebase.database().ref().child('/people');
+        faceData.on('value', snap => {
+            var newFaces = [];
+            for (var key in snap.val()) {
+                var currFace = {};
+                currFace.Person = snap.val()[key].person;
+                currFace.Time = snap.val()[key].time;
+                newFaces.push(currFace);
+            }
+
+            this.setState({faceData: newFaces});
+        })
+        starCountRef.on('value', function (snapshot) {
+            updateStarCount(postElement, snapshot.val());
+        });
+    }
+    updateLicenseData() { }
+
 
 
     render() {
@@ -85,14 +58,14 @@ export default class Home extends Component {
                 <FlatList
                     style={styles.flatList}
                     data={this.state.licenseData}
-                    renderItem={({item}) => (
+                    renderItem={({ item }) => (
                         <View style={styles.flatListTable}>
                             <Text style={styles.text}>{item.Plate}</Text>
                             <Text style={styles.text}>{item.Time}</Text>
                         </View>
                     )}
                 />
-              
+
                 <Text style={styles.subheader}>Recognized People</Text>
                 <View>
                     <View style={styles.columnHead}>
@@ -103,7 +76,7 @@ export default class Home extends Component {
                 <FlatList
                     style={styles.flatList}
                     data={this.state.faceData}
-                    renderItem={({item}) => (
+                    renderItem={({ item }) => (
                         <View style={styles.flatListTable}>
                             <Text style={styles.text}>{item.Person}</Text>
                             <Text style={styles.text}>{item.Time}</Text>
@@ -114,7 +87,7 @@ export default class Home extends Component {
             </View>
         )
     }
-    
+
 };
 
 const styles = StyleSheet.create({
@@ -164,7 +137,7 @@ const styles = StyleSheet.create({
     },
     mainElement: {
         paddingBottom: 20,
-        paddingTop: 20     
+        paddingTop: 20
     }
 });
 
