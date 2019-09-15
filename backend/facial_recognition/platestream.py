@@ -7,7 +7,6 @@ import threading
 import argparse
 from openalpr import Alpr
 import datetime
-import imutils
 import pickle
 import datetime
 import time
