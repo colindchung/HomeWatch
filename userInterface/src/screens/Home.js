@@ -3,7 +3,6 @@ import {
     View,
     Text,
     StyleSheet,
-    ListView,
     FlatList
 } from 'react-native';
 import * as firebase from 'firebase';
@@ -101,15 +100,17 @@ const styles = StyleSheet.create({
     subheader: {
         fontSize: 18,
         fontWeight: '400',
-        paddingBottom: 10
+        paddingBottom: 10,
+        color: '#23374D'
     },
     columnHead: {
-        backgroundColor: '#D3D3D3',
+        backgroundColor: '#1089FF',
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8,
         borderWidth: 2,
-        borderColor: '#000000',
-        flexDirection: "row"
+        borderColor: '#23374D',
+        flexDirection: "row",
+        
     },
     text: {
         padding: 5,
@@ -122,10 +123,10 @@ const styles = StyleSheet.create({
         width: 180
     },
     flatList: {
-        backgroundColor: '#D3D3D3',
+        backgroundColor: '#1089FF',
         borderWidth: 2,
         borderTopWidth: 0,
-        borderColor: '#000000',
+        borderColor: '#23374D',
         maxHeight: 170,
         marginBottom: 30,
         borderBottomLeftRadius: 8,
