@@ -14,13 +14,22 @@ class Monitor extends React.Component {
                 <h2>{this.props.type}</h2>
                 <Videobox source={this.props.source} width={this.props.video_width} />
                 <h3>Recent</h3>
-                <ul>
+                <table>
+                    <th>Recognized</th>
+                    <th>Date and Time</th>
                     {
                         this.props.list.map(val => {
-                            return <li>{val}</li>
+                            return <tr><td>{val.person}</td><td>{val.time}</td></tr>
                         })
                     }
-                </ul>
+                </table>
+                {/* <ul>
+                    {
+                        this.props.list.map(val => {
+                            return <tr><td>{val.person}</td><td>{val.time}</td></tr>
+                        })
+                    }
+                </ul> */}
             </div>
         )
     }

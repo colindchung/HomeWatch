@@ -22,7 +22,7 @@ class App extends React.Component {
     this.dbface.on('value', snap => {
       var newfaces = []
       for (var key in snap.val()) {
-        newfaces.unshift(snap.val()[key].person + ' | ' + snap.val()[key].time)
+        newfaces.unshift({person: snap.val()[key].person, time: snap.val()[key].time})
       }
       console.log(newfaces)
       this.setState({facelist: newfaces});
