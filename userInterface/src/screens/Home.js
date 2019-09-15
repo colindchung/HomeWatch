@@ -2,29 +2,115 @@ import React, {Component} from 'react';
 import {View, 
         Text, 
         StyleSheet, 
-        TouchableHighlight,
-        Animated,
-        Easing,
-        Button,
-        Image
+        ListView,
+        FlatList
     } from 'react-native';
 
 
 export default class Home extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            username: "Colin"
-        }   
+    state = {
+        licenseData: [
+            {
+                Plate: 'ABCDEF',
+                Time: '2019/01/01'
+            },
+            {
+                Plate: 'FEDCBA',
+                Time: '2019/01/02'
+            },
+            {
+                Plate: 'ABCDEF',
+                Time: '2019/01/01'
+            },
+            {
+                Plate: 'FEDCBA',
+                Time: '2019/01/02'
+            },
+            {
+                Plate: 'ABCDEF',
+                Time: '2019/01/01'
+            },
+            {
+                Plate: 'FEDCBA',
+                Time: '2019/01/02'
+            },
+            {
+                Plate: 'ABCDEF',
+                Time: '2019/01/01'
+            },
+            {
+                Plate: 'FEDCBA',
+                Time: '2019/01/02'
+            },
+            {
+                Plate: 'ABCDEF',
+                Time: '2019/01/01'
+            },
+            {
+                Plate: 'FEDCBA',
+                Time: '2019/01/02'
+            }
+        ],
+        faceData: [
+            {
+                Person: 'Colin',
+                Time: '2019/01/01'
+            },
+            {
+                Person: 'SmartSam22',
+                Time: '2019/01/02'
+            }
+        ]
+    }  
+
+    padding(top, bottom){
+        return {
+            paddingTop: top,
+            paddingBottom: bottom
+        }
     }
+
 
     render() {
         return (
-            <View>
+            <View style={styles.background}>
+                <Text style={styles.subheader}>Vehicles</Text>
                 <View>
-                    <Text>Welcome, {this.state.username}!</Text>
+                    <View style={styles.columnHead}>
+                        <Text style={styles.text}>License Plate</Text>
+                        <Text style={styles.text}>Timestamp</Text>
+                    </View>
                 </View>
+                <FlatList
+                    style={styles.flatList}
+                    data={this.state.licenseData}
+                    renderItem={({item}) => (
+                        <View style={styles.flatListTable}>
+                            <Text style={styles.text}>{item.Plate}</Text>
+                            <Text style={styles.text}>{item.Time}</Text>
+                        </View>
+                    )}
+                />
+              
+                <Text style={styles.subheader}>Recognized People</Text>
+                <View>
+                    <View style={styles.columnHead}>
+                        <Text style={styles.text}>ID</Text>
+                        <Text style={styles.text}>Timestamp</Text>
+                    </View>
+                </View>
+                <FlatList
+                    style={styles.flatList}
+                    data={this.state.faceData}
+                    renderItem={({item}) => (
+                        <View style={styles.flatListTable}>
+                            <Text style={styles.text}>{item.Person}</Text>
+                            <Text style={styles.text}>{item.Time}</Text>
+                        </View>
+                    )}
+                />
+
             </View>
         )
     }
@@ -33,35 +119,52 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
     background: {
+        paddingTop: 20,
         flex: 1,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        //justifyContent: 'center'
     },
-    navBar: {
-        backgroundColor: '#d3d3d3',
-        alignSelf: 'stretch',
-        flexDirection: 'row-reverse'
-    },
-    navElement: {
-        width: 150,
-        height: 40,
+    header: {
         fontSize: 25,
-        alignItems: 'flex-end',
-        paddingTop: 10,
-        paddingRight: 10,
-        borderRightColor: '#000000'
+        fontWeight: '600',
+        paddingBottom: 20,
+        paddingTop: 20
     },
-    imageBox: {
-        alignSelf: 'center',
+    subheader: {
+        fontSize: 18,
+        fontWeight: '400',
+        paddingBottom: 10
     },
-    imageBorder: {
-        paddingTop: 50,
-        backgroundColor: '#FFFFFF'
+    columnHead: {
+        backgroundColor: '#D3D3D3',
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        borderWidth: 2,
+        borderColor: '#000000',
+        flexDirection: "row"
     },
-    stream: {
-        paddingTop: 60,
-        width: 200,
-        height: 200,
-        alignSelf: 'center'
+    text: {
+        padding: 5,
+        textAlign: 'center',
+        width: 150
+    },
+    flatList: {
+        backgroundColor: '#D3D3D3',
+        borderWidth: 2,
+        borderTopWidth: 0,
+        borderColor: '#000000',
+        maxHeight: 170,
+        marginBottom: 30,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8
+    },
+    flatListTable: {
+        flexDirection: 'row'
+    },
+    mainElement: {
+        paddingBottom: 20,
+        paddingTop: 20     
     }
 });
 
