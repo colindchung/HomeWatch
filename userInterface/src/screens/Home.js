@@ -6,6 +6,7 @@ import {
     ListView,
     FlatList
 } from 'react-native';
+import * as firebase from 'firebase';
 
 
 export default class Home extends Component {
@@ -32,18 +33,11 @@ export default class Home extends Component {
                 var currFace = {};
                 currFace.Person = snap.val()[key].person;
                 currFace.Time = snap.val()[key].time;
-                newFaces.push(currFace);
+                newFaces.unshift(currFace);
             }
-
             this.setState({faceData: newFaces});
         })
-        starCountRef.on('value', function (snapshot) {
-            updateStarCount(postElement, snapshot.val());
-        });
     }
-    updateLicenseData() { }
-
-
 
     render() {
         return (
@@ -52,7 +46,7 @@ export default class Home extends Component {
                 <View>
                     <View style={styles.columnHead}>
                         <Text style={styles.text}>License Plate</Text>
-                        <Text style={styles.text}>Timestamp</Text>
+                        <Text style={styles.timestampText}>Timestamp</Text>
                     </View>
                 </View>
                 <FlatList
@@ -61,7 +55,7 @@ export default class Home extends Component {
                     renderItem={({ item }) => (
                         <View style={styles.flatListTable}>
                             <Text style={styles.text}>{item.Plate}</Text>
-                            <Text style={styles.text}>{item.Time}</Text>
+                            <Text style={styles.timestampText}>{item.Time}</Text>
                         </View>
                     )}
                 />
@@ -70,7 +64,7 @@ export default class Home extends Component {
                 <View>
                     <View style={styles.columnHead}>
                         <Text style={styles.text}>ID</Text>
-                        <Text style={styles.text}>Timestamp</Text>
+                        <Text style={styles.timestampText}>Timestamp</Text>
                     </View>
                 </View>
                 <FlatList
@@ -79,7 +73,7 @@ export default class Home extends Component {
                     renderItem={({ item }) => (
                         <View style={styles.flatListTable}>
                             <Text style={styles.text}>{item.Person}</Text>
-                            <Text style={styles.text}>{item.Time}</Text>
+                            <Text style={styles.timestampText}>{item.Time}</Text>
                         </View>
                     )}
                 />
@@ -120,7 +114,12 @@ const styles = StyleSheet.create({
     text: {
         padding: 5,
         textAlign: 'center',
-        width: 150
+        width: 120
+    },
+    timestampText: {
+        padding: 5,
+        textAlign: 'center',
+        width: 180
     },
     flatList: {
         backgroundColor: '#D3D3D3',
