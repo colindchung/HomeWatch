@@ -76,11 +76,18 @@ export default class Register extends Component {
     print(){
         console.log('Hello World!');
     }
-    render() {
+
+    onPressBack(props) {
+        const {navigate} = props.navigation;
+        navigate('LoginPage');
+    }
+
+    render(props) {
+
         return (
             <View style={styles.background}>
               
-                <Text style={styles.header}>Please Enter Credentials</Text>
+                <Text style={styles.header}>Enter Your Credentials</Text>
                     <View style={styles.rowAlign}>
                         <TextInput
                             style={this.getTextInputStyle(140, 10, 0)}
@@ -138,6 +145,7 @@ export default class Register extends Component {
                             }
                         }}
                     >Sign Up!</LoginButton>
+                    <LoginButton onPress={() => this.onPressBack(this.props)}>Back</LoginButton>
          
             </View>
         )
