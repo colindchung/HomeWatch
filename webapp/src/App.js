@@ -10,6 +10,7 @@ class App extends React.Component {
 
     this.app = firebase.initializeApp(config);
     this.dbface = this.app.database().ref().child('/people');
+    this.dbplate = this.app.database().ref().child('/plates');
 
     this.state = {
       facelist: [],
@@ -26,6 +27,15 @@ class App extends React.Component {
       }
       console.log(newfaces)
       this.setState({facelist: newfaces});
+    });
+
+    this.dbplate.on('value', snap => {
+      var newplates = []
+      for (var key in snap.val()) {
+        newplates.unshift({plate: snap.val()[key].plate, time: snap.val()[key].time})
+      }
+      console.log(newplates)
+      this.setState({platelist: newplates});
     });
   }
 
@@ -61,9 +71,9 @@ class App extends React.Component {
           />
           <Monitor
             type='LICENCE PLATES'
-            source='http://192.168.0.160:8000/video_feed'
+            source='http://192.168.0.193:8000/video_feed'
             video_width='400px'
-            list={this.state.facelist}
+            list={this.state.platelist}
           />
         </div>
 

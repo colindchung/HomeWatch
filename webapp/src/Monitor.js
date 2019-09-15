@@ -19,7 +19,12 @@ class Monitor extends React.Component {
                     <th>Date and Time</th>
                     {
                         this.props.list.map(val => {
-                            return <tr><td>{val.person}</td><td>{val.time}</td></tr>
+                            if (this.props.type == 'PEOPLE') {
+                                return <tr><td>{val.person}</td><td>{val.time}</td></tr>
+                            } else {
+                                return <tr><td>{val.plate}</td><td>{val.time}</td></tr>
+                            }
+                            
                         })
                     }
                 </table>
