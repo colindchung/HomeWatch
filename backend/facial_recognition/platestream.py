@@ -98,6 +98,7 @@ def detect_face():
 
         if len(license_plates) >= 36:
             to_post = most_frequent(license_plates)
+            print("Posting {} to post".format(to_post))
             res = firebase.post(
                 '/plates',
                 {
