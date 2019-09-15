@@ -5,11 +5,7 @@ import Videobox from './Videobox';
 class Monitor extends React.Component {
     constructor(props) {
         super(props);
-        // type, source, firebase, video_width, 
-
-        this.state = {
-            list: [1,2,3,4,5]
-        }
+        // type, source, firebase, video_width, list
     }
 
     render() {
@@ -20,7 +16,7 @@ class Monitor extends React.Component {
                 <h3>Recent</h3>
                 <ul>
                     {
-                        this.state.list.map(val => {
+                        this.props.list.map(val => {
                             return <li>{val}</li>
                         })
                     }
