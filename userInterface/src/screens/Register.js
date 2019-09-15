@@ -50,6 +50,7 @@ export default class Register extends Component {
                             LastName: this.state.lastName,
                             phone: this.state.phone,
                          });
+                         firebase.messaging().subscribeToTopic("notification");
                 });
         }
         catch (error) {
