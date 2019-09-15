@@ -3,18 +3,23 @@ from imutils.video import FPS
 from flask import Response
 from flask import Flask
 from flask import render_template
+from firebase import firebase
 import numpy as np
 import threading
 import argparse
 import datetime
 import imutils
 import pickle
+import datetime
 import time
 import cv2
 import os
 
+firebase = firebase.FirebaseApplication('https://hackthenorth2019-138ac.firebaseio.com/', None)
+
 outputFrame = None
 lock = threading.Lock()
+face_sum = []
 
 # load our serialized face detector from disk
 print("! loading face detector...")
@@ -62,7 +67,7 @@ def video_feed():
 
 def detect_face():
     # global vs, outputFrame, lock
-    global outputFrame, lock
+    global outputFrame, lock, face_sum
 
     while True:
         frame = vs.read()
@@ -100,6 +105,36 @@ def detect_face():
                 j = np.argmax(preds)
                 proba = preds[j]
                 name = le.classes_[j]
+
+                if name == 'dhruv':
+                    face_sum.append(1)
+                else:
+                    face_sum.append(0)
+                
+                if len(face_sum) >= 120:
+                    total = sum(face_sum)
+                    if (total / 120 > 0.5):
+                        # its dhruv
+                        print('posting dhruv')
+                        res = firebase.post(
+                            '/people',
+                            {
+                                'person': 'dhruv',
+                                'time': datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+                            }
+                        )
+                    else:
+                        # its unknown
+                        print('posting unknown')
+                        res = firebase.post(
+                            '/people',
+                            {
+                                'person': 'unknown',
+                                'time': datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+                            }
+                        )
+                    face_sum = []
+                    time.sleep(2)
     
                 text = "{}: {:.2f}%".format(name, proba * 100)
                 y = startY - 10 if startY - 10 > 10 else startY + 10
