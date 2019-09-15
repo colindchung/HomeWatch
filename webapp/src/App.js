@@ -65,13 +65,13 @@ class App extends React.Component {
         <div className='container'>
           <Monitor
             type='PEOPLE'
-            source='http://192.168.0.160:8000/video_feed'
+            source='http://10.32.18.54:8000/video_feed'
             video_width='400px'
             list={this.state.facelist}
           />
           <Monitor
             type='LICENCE PLATES'
-            source='http://192.168.0.193:8000/video_feed'
+            source='http://10.34.57.157:8000/video_feed'
             video_width='400px'
             list={this.state.platelist}
           />
