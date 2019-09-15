@@ -6,6 +6,7 @@ import {
     FlatList
 } from 'react-native';
 import * as firebase from 'firebase';
+import { LoginButton } from '../components/loginButton';
 
 
 export default class Home extends Component {
@@ -36,11 +37,29 @@ export default class Home extends Component {
             }
             this.setState({faceData: newFaces});
         })
+
+        var plateData = firebase.database().ref().child('/plates');
+        plateData.on('value', snap => {
+            var newPlates = [];
+            for (var key in snap.val()) {
+                var currPlate = {};
+                currPlate.Plate = snap.val()[key].plate;
+                currPlate.Time = snap.val()[key].time;
+                newPlates.unshift(currPlate);
+            }
+            this.setState({licenseData: newPlates});
+        })
     }
 
-    render() {
+    onPressLogOut(props) {
+        const {navigate} = props.navigation;
+        navigate('LoginPage');
+    }
+
+    render(props) {
         return (
             <View style={styles.background}>
+                <Text style={styles.header}>Recent Activity</Text>
                 <Text style={styles.subheader}>Vehicles</Text>
                 <View>
                     <View style={styles.columnHead}>
@@ -76,7 +95,7 @@ export default class Home extends Component {
                         </View>
                     )}
                 />
-
+                
             </View>
         )
     }
@@ -85,11 +104,10 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
     background: {
-        paddingTop: 20,
+        paddingTop: 10,
         flex: 1,
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
-        //justifyContent: 'center'
     },
     header: {
         fontSize: 25,
@@ -110,7 +128,6 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#23374D',
         flexDirection: "row",
-        
     },
     text: {
         padding: 5,
@@ -127,7 +144,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderTopWidth: 0,
         borderColor: '#23374D',
-        maxHeight: 170,
+        maxHeight: 160,
         marginBottom: 30,
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8
@@ -140,6 +157,3 @@ const styles = StyleSheet.create({
         paddingTop: 20
     }
 });
-
-
-
