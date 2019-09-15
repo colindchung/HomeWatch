@@ -62,6 +62,7 @@ export default class App extends React.Component {
 
         return (
             <View style = {styles.form}>
+                <Text style={styles.header}>Log In</Text>
                 <Input
                     placeholder='Enter your email...'
                     label='Email'
@@ -98,7 +99,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     form: {
-        flex: 1
+        flex: 1,
+        alignItems: 'center'
+    },
+    header: {
+        fontSize: 25,
+        fontWeight: '600',
+        paddingBottom: 20
     }
 })
 
