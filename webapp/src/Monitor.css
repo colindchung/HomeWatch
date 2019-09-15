@@ -3,6 +3,7 @@
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    background: #d3d3d3;
+    background: #1089ff;
     border-radius: 10px;
+    color: #e5e5e5;
 }

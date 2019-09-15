@@ -22,7 +22,7 @@ class App extends React.Component {
     this.dbface.on('value', snap => {
       var newfaces = []
       for (var key in snap.val()) {
-        newfaces.push(snap.val()[key].person)
+        newfaces.push(snap.val()[key].person + ' | ' + snap.val()[key].time)
       }
       console.log(newfaces)
       this.setState({facelist: newfaces});
@@ -32,16 +32,16 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Home Watch</h1>
+        <h1>HOME WATCH</h1>
         <div className='container'>
           <Monitor
-            type='People'
+            type='PEOPLE'
             source='http://192.168.0.160:8000/video_feed'
             video_width='400px'
             list={this.state.facelist}
           />
           <Monitor
-            type='Licence Plates'
+            type='LICENCE PLATES'
             source='http://192.168.0.160:8000/video_feed'
             video_width='400px'
             list={this.state.facelist}
