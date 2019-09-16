@@ -1,4 +1,4 @@
-# HackTheNorth2019
+# HackTheNorth2019 - Home Watch
 
 ## Inspiration
 According to alarms.org, 'There are roughly 2.5 million burglaries a year, 66% of those being home break-ins'. Despite the advancement of home technology systems, there aren't any solutions that allow you to personalize the ecosystem to use real-time recognition. We wanted to build a solution that notified you of suspicious activity before anything even happened. 
