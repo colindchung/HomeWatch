@@ -14,10 +14,10 @@ export default class App extends React.Component {
     }
     componentWillMount() {
         const firebaseConfig = {
-            apiKey: 'AIzaSyAg--iZyoMT60j51cfQ9Xtng3OXkuSNlR0',
-            authDomain: 'hackthenorth2019-138ac.firebaseapp.com',
-            projectId: "hackthenorth2019-138ac",
-            databaseURL: "https://hackthenorth2019-138ac.firebaseio.com/"
+            apiKey: '',
+            authDomain: '',
+            projectId: '',
+            databaseURL: ''
         }
 
         firebase.initializeApp(firebaseConfig);
